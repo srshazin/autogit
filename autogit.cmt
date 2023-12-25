@@ -1,0 +1,26 @@
+	modified:   CMakeLists.txt
+	renamed:    build/.cmake/api/v1/reply/codemodel-v2-91f3754717934b753cb2.json -> build/.cmake/api/v1/reply/codemodel-v2-0d90358be5f4be30b230.json
+	renamed:    build/.cmake/api/v1/reply/index-2023-12-25T16-31-57-0538.json -> build/.cmake/api/v1/reply/index-2023-12-25T20-55-35-0608.json
+	renamed:    build/.cmake/api/v1/reply/target-autogit-Debug-94d5b3264b1ea08cc648.json -> build/.cmake/api/v1/reply/target-autogit-Debug-a62ac54cd64bb24c252f.json
+	modified:   build/autogit
+	modified:   buildxrun.sh
+	new file:   includes/cli.h
+	modified:   includes/utils.h
+	modified:   src/args_parser.c
+	new file:   src/cli.c
+	new file:   src/loop.c
+	modified:   src/main.c
+	modified:   src/utils.c
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    build/.cmake/api/v1/reply/index-2023-12-25T20-55-35-0608.json
+	modified:   build/autogit
+	modified:   src/cli.c
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	autogit.cmt
+	build/.cmake/api/v1/reply/index-2023-12-25T21-01-30-0268.json
+

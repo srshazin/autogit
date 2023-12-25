@@ -1,4 +1,4 @@
 cmake -S . -B build &&
 cd build &&
 make &&
-./autogit
+./autogit $1 $2 $3 $4 $5 $6

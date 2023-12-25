@@ -13,4 +13,9 @@ typedef struct
 void printHelp();
 int is_arg_in_register(const char *argument);
 void log_error(char *error_msg);
+Arg find_arg_in_register(char *key);
+int is_arg_match_target(
+    const char *provided_arg,
+    const char *match_with,
+    char *alias);
 #endif

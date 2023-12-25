@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "utils.h"
+#include "cli.h"
 #define MAX_ARG_S 10
 #define TRUE 1
 #define FALSE 0
@@ -45,20 +47,65 @@ int get_registered_args_nums()
  */
 void parse_args(int argc, char **argv)
 {
+    unsigned int pos = 1;
     if (argc > 1)
     {
-        for (int i = 0; i < argc; i++)
+        // for (int i = 1; i < argc; i++)
+        // {
+        //     printf("%s\n", argv[i]);
+        //     if (is_arg_in_register(argv[i]) == 0)
+        //     {
+        //         printf("Unknown argument{%s}\nPlease use --help[-h] for listing all available arguments.\n", argv[i]);
+        //     }
+        //     else
+        //     {
+        //         // Check for valued arg or not
+        //         Arg arg__ = find_arg_in_register(argv[i]);
+        //         if (arg__.arg_primary != NULL)
+        //         {
+        //             if (arg__.requireValue == 1)
+        //             {
+        //                 if (
+        //                     strcmp(arg__.arg_primary, "--interval") ||
+        //                     strcmp(arg__.arg_shorthand, "-i"))
+        //                 {
+        //                     // TODO: handle interval
+        //                     printf("Interval is set to %s\n", argv[i + 1]);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        if (is_arg_match_target(argv[pos], "-interval", "-i"))
         {
-            printf("%s\n", argv[i]);
-            if (is_arg_in_register(argv[i]) == 0)
+            if (argc > 2)
             {
-                printf("Unknown argument\nPlease use --help[-h] for listing all available arguments.\n", argv[i]);
+                // check if 0 for infinity
+
+                unsigned int interval = atoi(argv[pos + 1]);
+                if (interval != 0)
+                {
+                    if (interval >= 5)
+                    {
+                        printf("Manual checkup interval set to %is\n", interval);
+                        printf("Running immediate call...\n");
+                        get_git_status();
+                    }
+                    else
+                    {
+                        printf("Couldn't set %is as interval, minimum interval period is 5 seconds.\n", interval);
+                    }
+                }
+                else
+                {
+                    printf("Invalid interval period(exit)\n");
+                }
             }
         }
     }
     else
     {
-        printf("Not enought argument provided\n");
+        printf("Not enough argument provided\n");
     }
 }
 

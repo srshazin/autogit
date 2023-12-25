@@ -12,6 +12,8 @@ add_executable(${PROJECT_NAME}
     src/main.c 
     src/utils.c
     src/args_parser.c
+    src/cli.c
+    src/loop.c
 )
 
 # Include the "include" directory to locate header files
