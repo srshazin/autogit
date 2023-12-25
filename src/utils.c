@@ -1,20 +1,45 @@
+#include <string.h>
 #include <stdio.h>
 #include "utils.h"
+#include "args_parser.h"
 #include <math.h>
-static void add_help_entry(char * opt, char * description){
-    printf("\t%s\t\t%s\n", opt, description);
-}
 
-void printHelp(){
+void printHelp()
+{
+    Arg *__args = get_registered_args();
     printf("Usage:\n");
     printf("\tautogit [options]\n\n");
-
     printf("Options:\n");
-    printf("\t-h, --help\t\tDisplay this help message\n");
-    printf("\t-v, --version\t\tDisplay version information\n");
-    printf("\t-i, --interval\t\t<seconds> Specify how after how much time it should auto commit\n");
-    add_help_entry("-n, --commit", "Specify a boundary value for maximum amount of commit(default=infinity)");
-    add_help_entry("-b , branch", "[branch_name] Specify any branch (default: active branch during calling autogit)");
-    add_help_entry("-V, --verbose", "verbosely log everything");
-    
+    for (int i = 0; i < get_registered_args_nums(); i++)
+    {
+        Arg __arg = __args[i];
+        printf("\t%-3s%-25s%s\n", __arg.arg_shorthand, __arg.arg_primary, __arg.help_desc);
+    }
+}
+
+/**
+ * is_arg_in_register() checks if a passed argument is present in the registered argument list
+ */
+
+int is_arg_in_register(const char *argument)
+{
+    Arg *registered_args = get_registered_args();
+    // A simple linear search
+    for (int i = 0; i < get_registered_args_nums(); i++)
+    {
+        if (strcmp(argument, registered_args[i].arg_primary) == 0 || strcmp(argument, registered_args[i].arg_shorthand) == 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+/**
+ * log_error(char * error) A simple utility function to print an error message
+ */
+
+void log_error(char *error_msg)
+{
+    printf("%d\n", error_msg);
 }
