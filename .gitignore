@@ -3,6 +3,7 @@
 
 #autogit
 .autogit*
+*autogit*
 ### C ###
 # Prerequisites
 *.d
