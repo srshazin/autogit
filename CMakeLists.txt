@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME}
     src/main.c 
     src/utils.c
     src/args_parser.c
-    src/cli.c
+    src/text_parser.c
     src/loop.c
 )
 

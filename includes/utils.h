@@ -18,4 +18,6 @@ int is_arg_match_target(
     const char *provided_arg,
     const char *match_with,
     char *alias);
+
+char *exec_cmd(const char *cmd);
 #endif

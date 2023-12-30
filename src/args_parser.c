@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "utils.h"
-#include "cli.h"
+#include "text_parser.h"
 #define MAX_ARG_S 10
 #define TRUE 1
 #define FALSE 0
@@ -89,7 +89,7 @@ void parse_args(int argc, char **argv)
                     {
                         printf("Manual checkup interval set to %is\n", interval);
                         printf("Running immediate call...\n");
-                        get_git_status();
+                        parse_git_status();
                     }
                     else
                     {
