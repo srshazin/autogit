@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "args_parser.h": "c",
+        "stdio.h": "c",
+        "utils.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
