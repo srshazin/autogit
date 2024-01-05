@@ -4,5 +4,6 @@
         "stdio.h": "c",
         "utils.h": "c"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.default.compileCommands": "/home/shazin/Code/projects/autogit-2.0/builddir/compile_commands.json"
 }
