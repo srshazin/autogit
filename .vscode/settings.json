@@ -1,9 +1,15 @@
 {
-    "files.associations": {
-        "args_parser.h": "c",
-        "stdio.h": "c",
-        "utils.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "disabled",
-    "C_Cpp.default.compileCommands": "/home/shazin/Code/projects/autogit-2.0/builddir/compile_commands.json"
+  "files.associations": {
+    "args_parser.h": "c",
+    "stdio.h": "c",
+    "utils.h": "c",
+    "stdlib.h": "c",
+    "argp.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.default.compileCommands": "/home/ghost/code/projects/autogit/builddir/compile_commands.json",
+  "cSpell.words": [
+    "agit",
+    "autogit"
+  ]
 }

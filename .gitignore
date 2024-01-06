@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/linux,c,c++,cmake,meson,ninja,visualstudio,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,c,c++,cmake,meson,ninja,visualstudio,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/c,c++,visualstudiocode,visualstudio,meson,ninja,linux
+# Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,visualstudiocode,visualstudio,meson,ninja,linux
 
 ### C ###
 # Prerequisites
@@ -74,23 +74,6 @@ dkms.conf
 
 # Executables
 
-### CMake ###
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
-
-### CMake Patch ###
-# External projects
-*-prefix/
-
 ### Linux ###
 *~
 
@@ -127,6 +110,7 @@ build.ninja
 .ninja_logs
 
 # Misc
+compile_commands.json
 
 ### Ninja ###
 .ninja_log
@@ -540,4 +524,7 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,c,c++,cmake,meson,ninja,visualstudio,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/c,c++,visualstudiocode,visualstudio,meson,ninja,linux
+
+
+.autogit
