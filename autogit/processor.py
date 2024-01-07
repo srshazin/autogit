@@ -8,9 +8,11 @@ def make_commit()->bool:
             exit_stat,stdout, _ = execsh(f'git commit -m "{commit_msg}"')
             if exit_stat == 0:
                 log_success("commit added", True)
+                
             else:
                 perror("autogit: fatal error: couldn't execute git commit -m")
                 print(stdout)
+                
     else:
         if "not a git repository" in stderr:
             perror("autogit: fatal error, not a git repository; make sure to run git init ")

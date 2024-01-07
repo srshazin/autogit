@@ -1,4 +1,4 @@
-import sys
+import sys, time
 from autogit.utils import *
 from autogit.processor import make_commit
 def init_autogit(autogit_props:dict):
@@ -36,7 +36,8 @@ def init_autogit(autogit_props:dict):
 def loop(agit_stats: dict, agit_props:dict):
     if agit_stats["commit"] and not agit_stats["push"]:
         print(get_magenta_str("starting in mode: 1"))
-        mod_1(agit_props=agit_props)
+        while True:
+            mod_1(agit_props=agit_props)
     elif agit_stats["commit"] and  agit_stats["push"]:
         print(get_blue_str("starting in mode: 2"))
     elif not agit_stats["commit"] and  agit_stats["push"]:
@@ -45,4 +46,5 @@ def loop(agit_stats: dict, agit_props:dict):
 
 
 def mod_1(agit_props: dict):
+    time.sleep(agit_props["commit_interval"])
     make_commit()
