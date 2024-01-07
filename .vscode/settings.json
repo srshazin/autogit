@@ -8,8 +8,6 @@
   },
   "C_Cpp.errorSquiggles": "disabled",
   "C_Cpp.default.compileCommands": "/home/ghost/code/projects/autogit/builddir/compile_commands.json",
-  "cSpell.words": [
-    "agit",
-    "autogit"
-  ]
+  "cSpell.words": ["agit", "autogit"],
+  "python.REPL.enableREPLSmartSend": false
 }

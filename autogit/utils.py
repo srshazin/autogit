@@ -142,3 +142,6 @@ def execsh(command:str):
 def is_git_repo():
     abs_path = os.path.abspath("./.git")
     return os.path.exists(abs_path) and os.path.isdir(abs_path)
+
+def append_stop(input_string, suffix):
+    return input_string + suffix if input_string else ""
