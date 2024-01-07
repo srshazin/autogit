@@ -18,7 +18,10 @@ def __arg_parser__():
     if is_git_installed:
     
         if is_git_repo():
-            init_autogit(autogit_props=autogit_props)
+            try:
+                init_autogit(autogit_props=autogit_props)
+            except KeyboardInterrupt:
+                print("\nScript interrupted. Cleaning up...")
         else:
             perror("autogit: fatal error, not a git repository; make sure to run git init ")
             sys.exit(10)
