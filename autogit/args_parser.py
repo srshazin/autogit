@@ -1,5 +1,6 @@
-import argparse
+import argparse, sys
 from autogit.loop import init_autogit
+from autogit.utils import is_git_installed, perror, is_git_repo
 def __arg_parser__():
     parser = argparse.ArgumentParser()
     parser.description = "A simple cli tool for automating basic git jobs"
@@ -14,4 +15,12 @@ def __arg_parser__():
         "commit_interval": commit_interval,
         "push_interval": push_interval
     }
-    init_autogit(autogit_props=autogit_props)
+    if is_git_installed:
+    
+        if is_git_repo():
+            init_autogit(autogit_props=autogit_props)
+        else:
+            perror("autogit: fatal error, not a git repository; make sure to run git init ")
+            sys.exit(10)
+    else:
+        perror("autogit: couldn't find git in your $PATH . please install git")

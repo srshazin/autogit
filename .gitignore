@@ -282,7 +282,6 @@ zsdoc/data
 # (for Zsh plugins using Python)
 
 # Zunit tests' output
-/tests/_output/*
+rtests/_output/*
 !/tests/_output/.gitkeep
-
-# End of https://www.toptal.com/developers/gitignore/api/python,virtualenv,venv,pythonvanilla,visualstudiocode,zsh,linux
+.egg-info
