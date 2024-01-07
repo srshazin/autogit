@@ -51,7 +51,6 @@ def parse_raw_status(raw_stat : str)->str:
     renames= []
     for index, line in enumerate(lines):
         if "modified:" in line or "new file:" in line or "deleted:" in line or "renamed:" in line:
-            print(line)
             __split_line = line.split(":", 1)
             if len(__split_line) >1:
             # print(__split_line)
@@ -60,7 +59,7 @@ def parse_raw_status(raw_stat : str)->str:
                     "file": __split_line[1]
                 }
             else:
-                print(len(__split_line), __split_line)
+                perror("autogit: fatal error (couldn't parse git status stdout)")
                 exit(1)
             if  "modified" in line_kv["mode"]:
                 modifieds.append(line_kv["file"].strip())
