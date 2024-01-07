@@ -9,7 +9,7 @@ def make_commit()->bool:
             log_success("commit added", True)
         else:
             perror("autogit: fatal error: couldn't execute git commit -m")
-            sys.exit(1)
+            print(stdout)
     else:
         if "not a git repository" in stderr:
             perror("autogit: fatal error, not a git repository; make sure to run git init ")
@@ -50,13 +50,18 @@ def parse_raw_status(raw_stat : str)->str:
     deletes = []
     renames= []
     for index, line in enumerate(lines):
-        if len(line) > 0 and index > 4:
+        if "modified:" in line or "new file:" in line or "deleted:" in line or "renamed:" in line:
+            print(line)
             __split_line = line.split(":", 1)
+            if len(__split_line) >1:
             # print(__split_line)
-            line_kv: dict  = {
-                "mode": __split_line[0],
-                "file": __split_line[1]
-            }
+                line_kv: dict  = {
+                    "mode": __split_line[0],
+                    "file": __split_line[1]
+                }
+            else:
+                print(len(__split_line), __split_line)
+                exit(1)
             if  "modified" in line_kv["mode"]:
                 modifieds.append(line_kv["file"].strip())
                 print("yes")
