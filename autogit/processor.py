@@ -4,12 +4,13 @@ def make_commit()->bool:
     return_code, stdout, stderr = execsh("git add .")
     if return_code == 0:
         commit_msg  = generate_commit_message()
-        exit_stat,stdout, _ = execsh(f'git commit -m "{commit_msg}"')
-        if exit_stat == 0:
-            log_success("commit added", True)
-        else:
-            perror("autogit: fatal error: couldn't execute git commit -m")
-            print(stdout)
+        if commit_msg:
+            exit_stat,stdout, _ = execsh(f'git commit -m "{commit_msg}"')
+            if exit_stat == 0:
+                log_success("commit added", True)
+            else:
+                perror("autogit: fatal error: couldn't execute git commit -m")
+                print(stdout)
     else:
         if "not a git repository" in stderr:
             perror("autogit: fatal error, not a git repository; make sure to run git init ")
@@ -26,6 +27,7 @@ def generate_commit_message()-> str:
     if return_code == 0:
         if "nothing to commit, working tree clean" in stdout:
             print(get_bold_yellow_str("nothing to commit (skipped)"))
+            return None
         else:
             commit_message  = parse_raw_status(stdout)
             return commit_message
