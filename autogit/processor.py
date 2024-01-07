@@ -67,7 +67,6 @@ def parse_raw_status(raw_stat : str)->str:
                 exit(1)
             if  "modified" in line_kv["mode"]:
                 modifieds.append(line_kv["file"].strip())
-                print("yes")
             elif "new file" in line_kv["mode"]:
                 new_files.append(line_kv["file"].strip())
             elif "deleted" in line_kv["mode"]:
