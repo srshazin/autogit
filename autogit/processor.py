@@ -1,6 +1,16 @@
-from autogit.utils import execsh, perror, get_bold_yellow_str, append_stop, log_success, get_bold_cyan_str
+from autogit.utils import execsh, perror, get_bold_yellow_str, append_stop, log_success, get_cyan_str, get_bold_blue_str
 from autogit import sys
-def make_commit()->bool:
+
+"""
+make_commit()->int function makes commit
+it has a few return keys we should care about
+1 -> everything is ok and commit is successful
+2 -> couldn't execute git commit -m
+3 ->  no commit was made thus skipped
+"""
+
+def make_commit()->int:
+    print(get_cyan_str("attempting to make commit"))
     return_code, stdout, stderr = execsh("git add .")
     if return_code == 0:
         commit_msg  = generate_commit_message()
@@ -8,10 +18,14 @@ def make_commit()->bool:
             exit_stat,stdout, _ = execsh(f'git commit -m "{commit_msg}"')
             if exit_stat == 0:
                 log_success("commit added", True)
+                return 1
                 
             else:
                 perror("autogit: fatal error: couldn't execute git commit -m")
                 print(stdout)
+                return 2
+        else:
+            return 3
                 
     else:
         if "not a git repository" in stderr:
@@ -95,27 +109,43 @@ def parse_raw_status(raw_stat : str)->str:
 """
  The make_push() function will try to push in remote repository.
  First we check if remote repo is available or not
+ Same return convention for make_commit() is applicable here meaning
+ 1 -> everything is ok and commit is successful
+ 2 -> couldn't execute git commit -m
+ 3 ->  no commit was made thus skipped
 """
 
 
 def make_push():
+    # first let's make a commit call first
+    commit = make_commit()
+    if commit == 3:
+        print(get_bold_blue_str("No changes for push (skipped)"))
+        return 3
+    elif commit == 2:
+        perror("autogit: commit failed(autopush skipped)")
+        return 2
     # check if remote repo is available 
-    print(get_bold_cyan_str("Pushing commit changes..."))
+    print(get_cyan_str("Pushing commit changes..."))
     return_code,stdout,err =  execsh("git remote -v")
     if return_code != 0:
         perror("autogit: fatal error: couldn't execute git remote -v")
         perror(err)
         exit(1)
     
-    if len(stdout) != 0:
-        print(get)
-        exit_status, push_log, push_err = execsh("git push")
+    if len(stdout) > 0:
+        exit_status, push_stdout, push_err = execsh("git push")
         if exit_status != 0:
             perror("autogit: fatal error: execution failed for git push")
             perror(push_err)
             exit(101)
-        
-        
+        if "Everything up-to-date" in push_stdout:
+            print(get_bold_blue_str("No changes for push (skipped)"))
+            return 3
+        else:
+            # at this point we just pray and assume everything's okey and the repo is pushed
+            log_success("local commit have been pushed to remote", True)
+            return 1
     else:
         perror("please add git remote origin before calling auto push")
         exit(150)
