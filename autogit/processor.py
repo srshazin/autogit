@@ -1,4 +1,4 @@
-from autogit.utils import execsh, perror, get_bold_yellow_str, append_stop, log_success
+from autogit.utils import execsh, perror, get_bold_yellow_str, append_stop, log_success, get_bold_cyan_str
 from autogit import sys
 def make_commit()->bool:
     return_code, stdout, stderr = execsh("git add .")
@@ -90,3 +90,33 @@ def parse_raw_status(raw_stat : str)->str:
         msg_renames = "Renamed " + ", ".join(renames)
     commit_message = append_stop(msg_modifieds, "; ") + append_stop(msg_new_files, "; ") + append_stop(msg_renames, "; ") +append_stop(msg_deletes, ";") 
     return commit_message
+
+
+"""
+ The make_push() function will try to push in remote repository.
+ First we check if remote repo is available or not
+"""
+
+
+def make_push():
+    # check if remote repo is available 
+    print(get_bold_cyan_str("Pushing commit changes..."))
+    return_code,stdout,err =  execsh("git remote -v")
+    if return_code != 0:
+        perror("autogit: fatal error: couldn't execute git remote -v")
+        perror(err)
+        exit(1)
+    
+    if len(stdout) != 0:
+        print(get)
+        exit_status, push_log, push_err = execsh("git push")
+        if exit_status != 0:
+            perror("autogit: fatal error: execution failed for git push")
+            perror(push_err)
+            exit(101)
+        
+        
+    else:
+        perror("please add git remote origin before calling auto push")
+        exit(150)
+    

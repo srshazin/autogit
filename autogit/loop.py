@@ -35,16 +35,21 @@ def init_autogit(autogit_props:dict):
 
 def loop(agit_stats: dict, agit_props:dict):
     if agit_stats["commit"] and not agit_stats["push"]:
+        # mode: 1
         print(get_magenta_str("starting in mode: 1"))
         while True:
             mod_1(agit_props=agit_props)
     elif agit_stats["commit"] and  agit_stats["push"]:
+        # mode 2
         print(get_blue_str("starting in mode: 2"))
+        # mode 3
     elif not agit_stats["commit"] and  agit_stats["push"]:
         print(get_cyan_str("starting in mode: 3"))
-
-
+        mod_3(agit_props=agit_props)
 
 def mod_1(agit_props: dict):
     time.sleep(agit_props["commit_interval"])
     make_commit()
+
+def mod_3(agit_props: dict):
+    pass
