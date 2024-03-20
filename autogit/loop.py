@@ -75,7 +75,7 @@ def display_eta(__time__:int):
         while interval >= 0:
             print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
-            interval -= 1 
+            interval -= 1
 
 def mod_3(agit_props: dict):
     global TOTAL_PUSH
