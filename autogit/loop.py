@@ -57,8 +57,9 @@ def loop(agit_stats: dict, agit_props:dict):
         t1 = threading.Thread(target = display_eta, args=(15,))
         t2 = threading.Thread(target = mod_3, args=(agit_props,))
         print(get_bold_magenta_str("starting in mode: 3"))
-        t1.start()
-        t2.start()
+        # t1.start()
+        # t2.start()
+        mod_3(agit_props=agit_props)
        
 def mod_1(agit_props: dict):
     global TOTAL_COMMIT
@@ -79,7 +80,12 @@ def display_eta(__time__:int):
 def mod_3(agit_props: dict):
     global TOTAL_PUSH
     while True:
-        time.sleep(agit_props["push_interval"])
+        interval = agit_props["push_interval"]
+        while interval >= 0:
+            print(f"ETA: {interval:3}", end="\r")
+            time.sleep(1)
+            interval -= 1
+        # time.sleep(agit_props["push_interval"])
         _make_push_ = make_push()
         if _make_push_== 1:
             TOTAL_PUSH += 1
