@@ -89,6 +89,7 @@ def mod_3(agit_props: dict):
             time.sleep(1)
             interval -= 1
             i += 1
+        sys.stdout.write("\033[?25h")  # Enable cursor blinking and show cursor
         # time.sleep(agit_props["push_interval"])
         _make_push_ = make_push()
         if _make_push_== 1:
