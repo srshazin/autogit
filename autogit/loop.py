@@ -69,11 +69,12 @@ def mod_1(agit_props: dict):
     print(f"Total commits: {TOTAL_COMMIT}")
 
 def display_eta(__time__:int):
-    interval = __time__
-    while interval >= 0:
-        time.sleep(1)
-        print('Next push in %d' % interval, end='\r')
-        interval -= 1
+    while True:
+        interval = __time__
+        while interval >= 0:
+            time.sleep(1)
+            print('Next push in %d' % interval, end='\r')
+            interval -= 1
 
 def mod_3(agit_props: dict):
     global TOTAL_PUSH
