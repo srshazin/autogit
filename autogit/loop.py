@@ -84,7 +84,7 @@ def mod_3(agit_props: dict):
         interval = agit_props["push_interval"]
         while interval >= 0:
             print_progress_bar(interval, agit_props["push_interval"])
-            print(f"ETA: {interval:3}", end="\r")
+            # print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
             interval -= 1
         # time.sleep(agit_props["push_interval"])
