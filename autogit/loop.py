@@ -1,7 +1,7 @@
 import sys, time
 from autogit.utils import *
 from autogit.processor import make_commit, make_push
-
+import threading
 TOTAL_COMMIT = 0
 TOTAL_PUSH = 0
 
@@ -54,10 +54,12 @@ def loop(agit_stats: dict, agit_props:dict):
         print(get_bold_blue_str("starting in mode: 2"))
         # mode 3
     elif not agit_stats["commit"] and  agit_stats["push"]:
+        t1 = threading.Thread(target = display_eta, args=(15,))
+        t2 = threading.Thread(target = mod_3, args=(agit_props,))
         print(get_bold_magenta_str("starting in mode: 3"))
-        while True:
-            mod_3(agit_props=agit_props)
-
+        # t1.start()
+        t2.start()
+       
 def mod_1(agit_props: dict):
     global TOTAL_COMMIT
     time.sleep(agit_props["commit_interval"])
@@ -66,10 +68,18 @@ def mod_1(agit_props: dict):
         TOTAL_COMMIT_ += 1
     print(f"Total commits: {TOTAL_COMMIT}")
 
+def display_eta(__time__:int):
+    interval = __time__
+    while interval >= 0:
+        time.sleep(1)
+        print('Next push in %d' % interval, end='\r')
+        interval -= 1
+
 def mod_3(agit_props: dict):
     global TOTAL_PUSH
-    time.sleep(agit_props["push_interval"])
-    _make_push_ = make_push()
-    if _make_push_== 1:
-        TOTAL_PUSH += 1
-    print(get_yellow_str(f"Total push made: {TOTAL_PUSH}"))
+    while True:
+        time.sleep(agit_props["push_interval"])
+        _make_push_ = make_push()
+        if _make_push_== 1:
+            TOTAL_PUSH += 1
+        print(get_yellow_str(f"Total push made: {TOTAL_PUSH}"))
