@@ -73,6 +73,7 @@ def display_eta(__time__:int):
     while True:
         interval = __time__
         while interval >= 0:
+            
             print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
             interval -= 1
@@ -82,6 +83,7 @@ def mod_3(agit_props: dict):
     while True:
         interval = agit_props["push_interval"]
         while interval >= 0:
+            print_progress_bar(interval, agit_props["push_interval"])
             print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
             interval -= 1
