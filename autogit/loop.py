@@ -72,7 +72,7 @@ def display_eta(__time__:int):
     while True:
         interval = __time__
         while interval >= 0:
-            print(f"Value of i: {interval}", end="\r")
+            print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
             interval -= 1
 
