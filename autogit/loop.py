@@ -82,11 +82,13 @@ def mod_3(agit_props: dict):
     global TOTAL_PUSH
     while True:
         interval = agit_props["push_interval"]
+        i = 0
         while interval >= 0:
-            print_progress_bar(interval, agit_props["push_interval"])
-            # print(f"ETA: {interval:3}", end="\r")
+            print_progress_bar(i, agit_props["push_interval"])
+            print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
             interval -= 1
+            i += 1
         # time.sleep(agit_props["push_interval"])
         _make_push_ = make_push()
         if _make_push_== 1:
