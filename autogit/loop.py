@@ -74,7 +74,7 @@ def display_eta(__time__:int):
         interval = __time__
         while interval >= 0:
             
-            print(f"ETA: {interval:3}", end="\r")
+            print(get_bold_cyan_str(f"ETA: {interval:3}", end="\r"))
             time.sleep(1)
             interval -= 1
 
