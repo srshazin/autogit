@@ -150,7 +150,7 @@ def print_progress_bar(current_value, total_value):
     percentage = (current_value / total_value) * 100
     filled_length = int(percentage / 5)  # Assuming each dash represents 5% progress
     filled_length = min(filled_length, 20)  # Limit the filled length to 20 characters
-    bar = '[\033[30m' + '█' * filled_length + ' ' * (20 - filled_length) + '\033[0m] '
+    bar = '[\033[95m' + '█' * filled_length + ' ' * (20 - filled_length) + '\033[0m] '
     sys.stdout.write("\r" + bar)
     sys.stdout.write("\r\033[?25l" + bar)  # Disable cursor blinking and hide cursor
     sys.stdout.flush()
