@@ -149,6 +149,7 @@ def append_stop(input_string, suffix):
 def print_progress_bar(current_value, total_value):
     percentage = (current_value / total_value) * 100
     filled_length = int(percentage / 5)  # Assuming each dash represents 5% progress
+    filled_length = min(filled_length, 20)  # Limit the filled length to 20 characters
     bar = '[' + '-' * filled_length + ' ' * (20 - filled_length) + ']'
     sys.stdout.write("\r" + bar)
     sys.stdout.flush()
