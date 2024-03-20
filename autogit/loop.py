@@ -57,7 +57,7 @@ def loop(agit_stats: dict, agit_props:dict):
         t1 = threading.Thread(target = display_eta, args=(15,))
         t2 = threading.Thread(target = mod_3, args=(agit_props,))
         print(get_bold_magenta_str("starting in mode: 3"))
-        # t1.start()
+        t1.start()
         t2.start()
        
 def mod_1(agit_props: dict):
@@ -72,8 +72,8 @@ def display_eta(__time__:int):
     while True:
         interval = __time__
         while interval >= 0:
+            print(f"Value of i: {interval}", end="\r")
             time.sleep(1)
-            print('Next push in %d' % interval, end='\r')
             interval -= 1
 
 def mod_3(agit_props: dict):
