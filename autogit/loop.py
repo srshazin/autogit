@@ -54,8 +54,6 @@ def loop(agit_stats: dict, agit_props:dict):
         print(get_bold_blue_str("starting in mode: 2"))
         # mode 3
     elif not agit_stats["commit"] and  agit_stats["push"]:
-        t1 = threading.Thread(target = display_eta, args=(15,))
-        t2 = threading.Thread(target = mod_3, args=(agit_props,))
         print(get_bold_magenta_str("starting in mode: 3"))
         # t1.start()
         # t2.start()
@@ -69,14 +67,6 @@ def mod_1(agit_props: dict):
         TOTAL_COMMIT_ += 1
     print(f"Total commits: {TOTAL_COMMIT}")
 
-def display_eta(__time__:int):
-    while True:
-        interval = __time__
-        while interval >= 0:
-            
-            print(get_bold_cyan_str(f" {Colors.CYAN}  ETA: {interval:3}", end=f"{Colors.RESET}\r"))
-            time.sleep(1)
-            interval -= 1
 
 def mod_3(agit_props: dict):
     global TOTAL_PUSH
@@ -85,7 +75,6 @@ def mod_3(agit_props: dict):
         i = 0
         while interval >= 0:
             print_progress_bar(i, agit_props["push_interval"])
-            print(f"ETA: {interval:3}", end="\r")
             time.sleep(1)
             interval -= 1
             i += 1
