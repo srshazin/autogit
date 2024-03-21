@@ -152,5 +152,5 @@ def print_progress_bar(current_value, total_value):
     filled_length = min(filled_length, 20)  # Limit the filled length to 20 characters
     bar = '\033[93m [' + '█' * filled_length + ' ' * (20 - filled_length) + ']\033[0m '
     sys.stdout.write("\r" + bar)
-    sys.stdout.write("\r\033[?25l" + bar + f'\nNext push in {current_value} seconds\n')  # Disable cursor blinking and hide cursor
+    sys.stdout.write("\r\033[?25l" + bar + f' Next push in {current_value} seconds remaining')  # Disable cursor blinking and hide cursor
     sys.stdout.flush()
