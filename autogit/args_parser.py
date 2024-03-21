@@ -40,6 +40,7 @@ def __arg_parser__():
             try:
                 init_autogit(autogit_props=autogit_props)
             except KeyboardInterrupt:
+                sys.stdout.write("\033[?25h")  # Enable cursor blinking and show cursor
                 print("\nScript interrupted. Cleaning up...")
         else:
             perror("autogit: fatal error, not a git repository; make sure to run git init ")
