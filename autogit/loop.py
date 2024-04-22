@@ -13,6 +13,10 @@ def init_autogit(autogit_props:dict):
         "commit": False,
         "push": False 
     }
+    # Checking if single push mode enabled and then push 
+    if autogit_props["single_push_mode"] == True:
+        push_stat = make_push()    
+        exit(0)
     if commit_interval:
         if commit_interval < MINIMUM_COMMIT_INTERVAL:
             perror("autogit: commit interval cannot be less than 10 seconds")

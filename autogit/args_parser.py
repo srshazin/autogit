@@ -8,6 +8,7 @@ def __arg_parser__():
     parser.add_argument("-t","-p","--push-interval",metavar="<seconds>", type=int, help="Interval for remote push.")
     parser.add_argument("-r","--push", "--auto-push",action='store_true', help="Specify to run commit and push together; -p or -t must me specified. Or use --poi <seconds> for all together")
     parser.add_argument("--poi", "--push-only-interval", metavar="<seconds>", type=int, help="Specify to run commit and push together and pass their interval")
+    parser.add_argument("--sp",action="store_true", help="Push local changes to remote repository one time with automated commit message.")
 
     args = parser.parse_args()
 
@@ -18,8 +19,16 @@ def __arg_parser__():
     commit_interval:int = args.commit_interval
     push_interval:int = args.push_interval or args.poi
     push_only: bool = args.push or args.poi != None
+    single_push_mode: bool = False
     
-    
+    # Check if --sp flag is passed
+    if args.sp:
+        other_flags_present = any(getattr(args, flag) for flag in vars(args) if flag != 'sp')
+        if not other_flags_present:
+            single_push_mode = True
+        else:
+            perror("autogit: invalid flag combination")
+            exit(1)
     
     if push_only:
         if not push_interval:
@@ -31,7 +40,8 @@ def __arg_parser__():
     autogit_props :dict = {
         "commit_interval": commit_interval,
         "push_interval": push_interval,
-        "push_only": push_only
+        "push_only": push_only,
+        "single_push_mode": single_push_mode
     }
 
     if is_git_installed:
